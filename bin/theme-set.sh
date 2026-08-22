@@ -31,6 +31,7 @@ ln -sfn "$THEME_ROOT/waybar-colors.css"   "$HOME/.config/waybar/colors.css"
 ln -sfn "$THEME_ROOT/kitty-theme.conf"    "$HOME/.config/kitty/current-theme.conf"
 ln -sfn "$THEME_ROOT/rofi-colors.rasi"    "$HOME/.config/rofi/colors.rasi"
 ln -sfn "$THEME_ROOT/dunstrc"             "$HOME/.config/dunst/dunstrc"
+ln -sfn "$THEME_ROOT/eww-colors.scss"     "$HOME/.config/eww/colors.scss"
 mkdir -p "$HOME/.config/hypr/conf/hyprland"
 ln -sfn "$THEME_ROOT/hyprland-colors.lua" "$HOME/.config/hypr/conf/hyprland/colors.lua"
 
