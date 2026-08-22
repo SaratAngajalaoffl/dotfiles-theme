@@ -1,0 +1,38 @@
+------------------------------------------------------------------------------------------
+-- NEOVIM COLOR PALETTE — Lupine
+------------------------------------------------------------------------------------------
+
+-- Managed by the theme switcher. Do not edit in place — edit
+-- theme/config/themes/lupine/nvim-colors.lua in the theme submodule instead.
+
+return {
+    mode = "light",
+    palette = {
+        rosewater = "#f930fb",
+        flamingo = "#c900c4",
+        pink = "#b363ff",
+        mauve = "#8a4ad7",
+        red = "#c900c4",
+        maroon = "#013a6f",
+        peach = "#026fde",
+        yellow = "#026fde",
+        green = "#4a2fd0",
+        teal = "#0c67de",
+        sky = "#3986ff",
+        sapphire = "#1b66e3",
+        blue = "#3264eb",
+        lavender = "#5482ff",
+        text = "#000000",
+        subtext1 = "#424242",
+        subtext0 = "#212121",
+        overlay2 = "#212121",
+        overlay1 = "#757575",
+        overlay0 = "#a4a4a4",
+        surface2 = "#f5f5f5",
+        surface1 = "#c8c8c8",
+        surface0 = "#e2e2e2",
+        base = "#fafafa",
+        mantle = "#ececec",
+        crust = "#dedede",
+    },
+}

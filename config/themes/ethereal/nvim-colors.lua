@@ -1,0 +1,38 @@
+------------------------------------------------------------------------------------------
+-- NEOVIM COLOR PALETTE — Ethereal
+------------------------------------------------------------------------------------------
+
+-- Managed by the theme switcher. Do not edit in place — edit
+-- theme/config/themes/ethereal/nvim-colors.lua in the theme submodule instead.
+
+return {
+    mode = "dark",
+    palette = {
+        rosewater = "#faaaa9",
+        flamingo = "#ed5b5a",
+        pink = "#ead7e7",
+        mauve = "#c89dc1",
+        red = "#ed5b5a",
+        maroon = "#75452a",
+        peach = "#eb8b54",
+        yellow = "#e9bb4f",
+        green = "#92a593",
+        teal = "#a3bfd1",
+        sky = "#dfeaf0",
+        sapphire = "#94a7d4",
+        blue = "#7d82d9",
+        lavender = "#c2c4f0",
+        text = "#ffcead",
+        subtext1 = "#c9b8a6",
+        subtext0 = "#ffcead",
+        overlay2 = "#ffcead",
+        overlay1 = "#6d7db6",
+        overlay0 = "#495581",
+        surface2 = "#131a3a",
+        surface1 = "#323d65",
+        surface0 = "#20294d",
+        base = "#060b1e",
+        mantle = "#040816",
+        crust = "#030610",
+    },
+}

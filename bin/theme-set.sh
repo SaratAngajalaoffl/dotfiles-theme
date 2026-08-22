@@ -34,6 +34,8 @@ ln -sfn "$THEME_ROOT/dunstrc"             "$HOME/.config/dunst/dunstrc"
 ln -sfn "$THEME_ROOT/eww-colors.scss"     "$HOME/.config/eww/colors.scss"
 mkdir -p "$HOME/.config/hypr/conf/hyprland"
 ln -sfn "$THEME_ROOT/hyprland-colors.lua" "$HOME/.config/hypr/conf/hyprland/colors.lua"
+mkdir -p "$HOME/.config/nvim/lua/config"
+ln -sfn "$THEME_ROOT/nvim-colors.lua" "$HOME/.config/nvim/lua/config/theme-colors.lua"
 
 # Qt accent — swap the color_scheme_path line, matching whatever accent this theme declares
 if [[ -f "$THEME_ROOT/theme.conf" ]]; then

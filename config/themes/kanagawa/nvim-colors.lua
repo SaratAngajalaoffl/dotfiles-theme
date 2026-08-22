@@ -1,0 +1,38 @@
+------------------------------------------------------------------------------------------
+-- NEOVIM COLOR PALETTE — Kanagawa
+------------------------------------------------------------------------------------------
+
+-- Managed by the theme switcher. Do not edit in place — edit
+-- theme/config/themes/kanagawa/nvim-colors.lua in the theme submodule instead.
+
+return {
+    mode = "dark",
+    palette = {
+        rosewater = "#e82424",
+        flamingo = "#c34043",
+        pink = "#938aa9",
+        mauve = "#957fb8",
+        red = "#c34043",
+        maroon = "#60382c",
+        peach = "#c17158",
+        yellow = "#c0a36e",
+        green = "#76946a",
+        teal = "#6a9589",
+        sky = "#7aa89f",
+        sapphire = "#7298a9",
+        blue = "#7e9cd8",
+        lavender = "#7fb4ca",
+        text = "#dcd7ba",
+        subtext1 = "#c8c093",
+        subtext0 = "#dcd7ba",
+        overlay2 = "#dcd7ba",
+        overlay1 = "#727169",
+        overlay0 = "#555452",
+        surface2 = "#223249",
+        surface1 = "#3e4854",
+        surface0 = "#2e3b4e",
+        base = "#1f1f28",
+        mantle = "#17171e",
+        crust = "#111116",
+    },
+}
