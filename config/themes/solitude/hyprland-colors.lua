@@ -7,5 +7,5 @@
 
 return {
     active_border   = "rgba(798186ee)",
-    inactive_border = "rgba(1e1e1e)",
+    inactive_border = "rgba(1e1e1eff)",
 }
