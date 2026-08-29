@@ -44,7 +44,7 @@ icon_path = /usr/share/icons/Arc/status/96:/usr/share/icons/Arc/status/symbolic
 icon_corner_radius = 4
 
 # Misc/Advanced
-dmenu = wofi --show drun --prompt 'Open with'
+dmenu = rofi -dmenu -p 'Open with'
 corner_radius = 10
 
 # Mouse
