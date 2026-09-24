@@ -17,6 +17,24 @@
       "character"
     ]
   },
+  "themes/elden-ring/backgrounds/erdtree.jpg": {
+    "name": "The Erdtree",
+    "tags": [
+      "gaming",
+      "elden-ring",
+      "fantasy",
+      "golden"
+    ]
+  },
+  "themes/evangelion/backgrounds/tokyo-3.jpg": {
+    "name": "Tokyo-3",
+    "tags": [
+      "anime",
+      "evangelion",
+      "cityscape",
+      "cyberpunk"
+    ]
+  },
   "themes/everforest/backgrounds/everforest.jpg": {
     "name": "Misty Forest",
     "tags": [
@@ -32,6 +50,15 @@
       "art",
       "painting",
       "nature"
+    ]
+  },
+  "themes/jujutsu-kaisen/backgrounds/cursed_energy.jpg": {
+    "name": "Cursed Energy",
+    "tags": [
+      "anime",
+      "jujutsu-kaisen",
+      "purple",
+      "action"
     ]
   },
   "themes/kanagawa/backgrounds/kanagawa.jpg": {
@@ -73,12 +100,30 @@
       "painting"
     ]
   },
+  "themes/nier-automata/backgrounds/yorha.jpg": {
+    "name": "YoRHa Memories",
+    "tags": [
+      "anime",
+      "nier-automata",
+      "monochrome",
+      "2b"
+    ]
+  },
   "themes/nord/backgrounds/nord.jpg": {
     "name": "Nord Eclipse",
     "tags": [
       "space",
       "mountains",
       "minimal"
+    ]
+  },
+  "themes/one-piece/backgrounds/grand_line.jpg": {
+    "name": "Grand Line Voyage",
+    "tags": [
+      "anime",
+      "one-piece",
+      "ocean",
+      "adventure"
     ]
   },
   "themes/osaka-jade/backgrounds/osaka-jade.jpg": {
@@ -128,6 +173,15 @@
     "tags": [
       "minimal",
       "ascii"
+    ]
+  },
+  "themes/your-name/backgrounds/comet.jpg": {
+    "name": "Comet Promise",
+    "tags": [
+      "anime",
+      "your-name",
+      "romance",
+      "sky"
     ]
   }
 }

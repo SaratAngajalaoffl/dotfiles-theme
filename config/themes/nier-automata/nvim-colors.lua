@@ -1,0 +1,38 @@
+------------------------------------------------------------------------------------------
+-- NEOVIM COLOR PALETTE — NieR: Automata
+------------------------------------------------------------------------------------------
+
+-- Managed by the theme switcher. Do not edit in place — edit
+-- theme/config/themes/nier-automata/nvim-colors.lua in the theme submodule instead.
+
+return {
+    mode = "dark",
+    palette = {
+        rosewater = "#f2eee7",
+        flamingo = "#ded8cf",
+        pink = "#d8b8ae",
+        mauve = "#a9a29a",
+        red = "#9b8f84",
+        maroon = "#726a63",
+        peach = "#ded1b9",
+        yellow = "#c6b98d",
+        green = "#8c9b80",
+        teal = "#8da29d",
+        sky = "#aebbb7",
+        sapphire = "#929d99",
+        blue = "#777f7c",
+        lavender = "#d4d0ca",
+        text = "#f2f0eb",
+        subtext1 = "#d1cfca",
+        subtext0 = "#b3b1ac",
+        overlay2 = "#918f8a",
+        overlay1 = "#72706c",
+        overlay0 = "#555451",
+        surface2 = "#3b3a37",
+        surface1 = "#2d2c2a",
+        surface0 = "#242321",
+        base = "#1b1a19",
+        mantle = "#131312",
+        crust = "#0b0b0a",
+    },
+}

@@ -1,0 +1,38 @@
+------------------------------------------------------------------------------------------
+-- NEOVIM COLOR PALETTE — Elden Ring
+------------------------------------------------------------------------------------------
+
+-- Managed by the theme switcher. Do not edit in place — edit
+-- theme/config/themes/elden-ring/nvim-colors.lua in the theme submodule instead.
+
+return {
+    mode = "dark",
+    palette = {
+        rosewater = "#d8d1b5",
+        flamingo = "#bcae83",
+        pink = "#a88f61",
+        mauve = "#82735b",
+        red = "#9d4a37",
+        maroon = "#642d27",
+        peach = "#c69058",
+        yellow = "#d2ad45",
+        green = "#6b8754",
+        teal = "#4f8b79",
+        sky = "#82999d",
+        sapphire = "#607f8c",
+        blue = "#3d6472",
+        lavender = "#a7a69c",
+        text = "#e8e0c8",
+        subtext1 = "#c8bea2",
+        subtext0 = "#a69d86",
+        overlay2 = "#827c6b",
+        overlay1 = "#615d52",
+        overlay0 = "#44423b",
+        surface2 = "#2e3029",
+        surface1 = "#252722",
+        surface0 = "#1d1f1b",
+        base = "#151714",
+        mantle = "#10110f",
+        crust = "#080908",
+    },
+}
