@@ -55,6 +55,15 @@ fi
 
 # Reload running apps that support it
 command -v notify-send >/dev/null 2>&1 && notify-send "Theme" "Switched to ${THEME_NAME:-$name}"
+
+# Quickshell picks the palette up on its own: it watches
+# ~/.config/theme/current/quickshell-colors.json, and `current` is the symlink
+# repointed above, so no per-app symlink is needed for it. It just needs
+# nudging to repaint.
+if pgrep -x qs >/dev/null 2>&1; then
+  qs ipc call theme reload >/dev/null 2>&1 || true
+fi
+
 [[ -x "$HOME/.local/bin/reload_all_services.sh" ]] && "$HOME/.local/bin/reload_all_services.sh" || true
 command -v hyprctl >/dev/null 2>&1 && hyprctl reload >/dev/null 2>&1 || true
 
