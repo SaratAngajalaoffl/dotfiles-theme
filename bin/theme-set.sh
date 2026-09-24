@@ -2,8 +2,16 @@
 # Apply a theme: point every themed app config at the chosen theme's files,
 # switch the wallpaper, and reload the running apps that support it.
 #
-# Usage: theme-set.sh <theme-name>
-# Theme names are the directory names under ~/.config/theme/themes/.
+# Usage: theme-set.sh <theme-name | theme-dir>
+# Theme names are the directory names under ~/.config/theme/themes/. A path to
+# a theme directory also works — that is how wallpaper.py applies the palettes
+# it generates (~/.local/state/theme/generated/<slug>/).
+#
+# Env:
+#   WALLPAPER=<image>  put this image up instead of the theme's own background
+#                      (wallpaper.py sets it; its choice is remembered in
+#                      ~/.local/state/theme/wallpaper.json)
+#   THEME_QUIET=1      no "switched theme" notification (the shell's picker)
 
 set -euo pipefail
 
@@ -18,7 +26,11 @@ if [[ -z "$name" ]]; then
   exit 1
 fi
 
-THEME_ROOT="$THEMES_DIR/$name"
+if [[ "$name" == /* ]]; then
+  THEME_ROOT="$name"
+else
+  THEME_ROOT="$THEMES_DIR/$name"
+fi
 if [[ ! -d "$THEME_ROOT" ]]; then
   echo "error: unknown theme '$name' (looked in $THEMES_DIR)" >&2
   exit 1
@@ -44,19 +56,40 @@ if [[ -f "$THEME_ROOT/theme.conf" ]]; then
   # shellcheck disable=SC1090
   source "$THEME_ROOT/theme.conf"
 fi
-if [[ -n "${QT_SCHEME:-}" ]]; then
-  for tool in qt5ct qt6ct; do
-    cfg="$HOME/.config/$tool/$tool.conf"
-    [[ -f "$cfg" ]] || continue
-    sed -i "s|^color_scheme_path=.*|color_scheme_path=$HOME/.config/$tool/colors/${QT_SCHEME}.conf|" "$cfg"
-  done
+# Generated themes carry their own scheme file (QT_SCHEME_PATH); curated ones
+# name one of the committed files in qt5ct/qt6ct's colors/.
+for tool in qt5ct qt6ct; do
+  cfg="$HOME/.config/$tool/$tool.conf"
+  [[ -f "$cfg" ]] || continue
+  if [[ -n "${QT_SCHEME_PATH:-}" ]]; then
+    scheme="$QT_SCHEME_PATH"
+  elif [[ -n "${QT_SCHEME:-}" ]]; then
+    scheme="$HOME/.config/$tool/colors/${QT_SCHEME}.conf"
+  else
+    continue
+  fi
+  sed -i "s|^color_scheme_path=.*|color_scheme_path=$scheme|" "$cfg"
+done
+
+# Wallpaper: the one asked for, else the theme's own (day/night aware if it
+# ships 2+ backgrounds).
+if [[ -n "${WALLPAPER:-}" ]]; then
+  WALLPAPER="$WALLPAPER" "$HOME/.local/bin/select_wallpaper.sh"
+else
+  # A plain theme switch: the theme's own background takes over, so forget
+  # the wallpaper picked earlier (it would come back at the next login).
+  rm -f "$HOME/.local/state/theme/wallpaper.json"
+  "$HOME/.local/bin/select_wallpaper.sh" --from-theme
 fi
 
-# Wallpaper (day/night aware if the theme ships 2+ backgrounds)
-"$HOME/.local/bin/select_wallpaper.sh"
-
 # Reload running apps that support it
-command -v notify-send >/dev/null 2>&1 && notify-send "Theme" "Switched to ${THEME_NAME:-$name}"
+if [[ -z "${THEME_QUIET:-}" ]] && command -v notify-send >/dev/null 2>&1; then
+  notify-send "Theme" "Switched to ${THEME_NAME:-$name}"
+fi
+
+# kitty re-reads kitty.conf on SIGUSR1, and with it current-theme.conf (the
+# symlink repointed above), so open terminals recolour in place.
+pkill -USR1 -x kitty 2>/dev/null || true
 
 # Quickshell picks the palette up on its own: it watches
 # ~/.config/theme/current/quickshell-colors.json, and `current` is the symlink

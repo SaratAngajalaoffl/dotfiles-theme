@@ -1,30 +1,45 @@
 #!/usr/bin/env bash
-# Pick a wallpaper from the active theme's backgrounds/, cache it for hyprlock,
-# and put it on screen via awww. If the theme ships 2+ backgrounds, the first
-# (alphabetically) is used during the day (7 AM-7 PM) and the second at night.
+# Put a wallpaper on screen via awww and cache it for hyprlock.
+#
+# Which one, in order:
+#   1. $WALLPAPER, when set (theme-set.sh passes the one picked in the shell)
+#   2. the last one picked (~/.local/state/theme/wallpaper.json, written by
+#      wallpaper.py) — so a login keeps your choice; skipped with --from-theme
+#   3. the active theme's backgrounds/: with 2+, the first (alphabetically) is
+#      used during the day (7 AM-7 PM) and the second at night.
 
 set -euo pipefail
 
 BACKGROUNDS_DIR="$HOME/.config/theme/current/backgrounds"
+CHOSEN="$HOME/.local/state/theme/wallpaper.json"
 CACHE_DIR="$HOME/.cache/appearance"
 CACHE_FILE="$CACHE_DIR/wallpaper.png"
 
-mapfile -t backgrounds < <(find "$BACKGROUNDS_DIR" -maxdepth 1 -type f | sort)
-
-if [[ ${#backgrounds[@]} -eq 0 ]]; then
-  echo "error: no backgrounds found in $BACKGROUNDS_DIR" >&2
-  exit 1
+src="${WALLPAPER:-}"
+if [[ -z "$src" && "${1:-}" != "--from-theme" && -f "$CHOSEN" ]]; then
+  src=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("path", ""))' "$CHOSEN" 2>/dev/null || true)
+  [[ -f "$src" ]] || src=""
 fi
 
-if [[ ${#backgrounds[@]} -ge 2 ]]; then
-  hour=$(date +%H)
-  if [[ $hour -ge 7 && $hour -lt 19 ]]; then
-    src="${backgrounds[0]}"
+# -L: a generated theme's backgrounds/ holds a symlink to the library image.
+mapfile -t backgrounds < <(find -L "$BACKGROUNDS_DIR" -maxdepth 1 -type f | sort)
+
+if [[ -z "$src" ]]; then
+  if [[ ${#backgrounds[@]} -eq 0 ]]; then
+    # A theme can have no wallpaper of its own (its image was dropped from
+    # the library); keep whatever is on screen.
+    echo "no backgrounds in $BACKGROUNDS_DIR, keeping the current wallpaper" >&2
+    exit 0
+  elif [[ ${#backgrounds[@]} -ge 2 ]]; then
+    hour=$(date +%H)
+    if [[ $hour -ge 7 && $hour -lt 19 ]]; then
+      src="${backgrounds[0]}"
+    else
+      src="${backgrounds[1]}"
+    fi
   else
-    src="${backgrounds[1]}"
+    src="${backgrounds[0]}"
   fi
-else
-  src="${backgrounds[0]}"
 fi
 
 mkdir -p "$CACHE_DIR"

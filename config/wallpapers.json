@@ -1,0 +1,133 @@
+{
+  "themes/catppuccin-mocha/backgrounds/gojo_neon.png": {
+    "name": "Gojo Neon",
+    "tags": [
+      "anime",
+      "neon",
+      "jujutsu-kaisen",
+      "character"
+    ]
+  },
+  "themes/catppuccin-mocha/backgrounds/sukuna_neon.png": {
+    "name": "Sukuna Neon",
+    "tags": [
+      "anime",
+      "neon",
+      "jujutsu-kaisen",
+      "character"
+    ]
+  },
+  "themes/everforest/backgrounds/everforest.jpg": {
+    "name": "Misty Forest",
+    "tags": [
+      "nature",
+      "forest",
+      "mist",
+      "landscape"
+    ]
+  },
+  "themes/gruvbox/backgrounds/gruvbox.jpg": {
+    "name": "Riverside",
+    "tags": [
+      "art",
+      "painting",
+      "nature"
+    ]
+  },
+  "themes/kanagawa/backgrounds/kanagawa.jpg": {
+    "name": "The Great Wave",
+    "tags": [
+      "art",
+      "japanese",
+      "ocean"
+    ]
+  },
+  "themes/last-horizon/backgrounds/last-horizon.jpg": {
+    "name": "Last Horizon",
+    "tags": [
+      "art",
+      "portrait"
+    ]
+  },
+  "themes/lumon/backgrounds/lumon.jpg": {
+    "name": "Lumon",
+    "tags": [
+      "minimal",
+      "severance",
+      "tv"
+    ]
+  },
+  "themes/matte-black/backgrounds/matte-black.jpg": {
+    "name": "Ember Sea",
+    "tags": [
+      "art",
+      "ocean",
+      "sunset",
+      "ship"
+    ]
+  },
+  "themes/miasma/backgrounds/miasma.jpg": {
+    "name": "Miasma",
+    "tags": [
+      "art",
+      "painting"
+    ]
+  },
+  "themes/nord/backgrounds/nord.jpg": {
+    "name": "Nord Eclipse",
+    "tags": [
+      "space",
+      "mountains",
+      "minimal"
+    ]
+  },
+  "themes/osaka-jade/backgrounds/osaka-jade.jpg": {
+    "name": "Osaka Jade",
+    "tags": [
+      "cityscape",
+      "anime",
+      "night"
+    ]
+  },
+  "themes/retro-82/backgrounds/retro-82.jpg": {
+    "name": "Retro 82",
+    "tags": [
+      "retro",
+      "music",
+      "vinyl"
+    ]
+  },
+  "themes/ristretto/backgrounds/ristretto.jpg": {
+    "name": "Ristretto",
+    "tags": [
+      "retro",
+      "minimal",
+      "stripes"
+    ]
+  },
+  "themes/solitude/backgrounds/solitude.jpg": {
+    "name": "Solitude",
+    "tags": [
+      "manga",
+      "anime",
+      "monochrome",
+      "art"
+    ]
+  },
+  "themes/tokyo-night/backgrounds/tokyo-night.jpg": {
+    "name": "Tokyo Dusk",
+    "tags": [
+      "nature",
+      "mountains",
+      "sunset",
+      "landscape"
+    ]
+  },
+  "themes/vantablack/backgrounds/vantablack.jpg": {
+    "name": "Vantablack",
+    "tags": [
+      "minimal",
+      "ascii"
+    ]
+  }
+}

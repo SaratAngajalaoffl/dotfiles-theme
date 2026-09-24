@@ -96,19 +96,19 @@ def load_palette(theme: str) -> dict[str, str]:
         return json.load(f)
 
 
-def resolve_accent(theme: str, palette: dict, conf: dict) -> str:
+def resolve_accent(theme_dir: str, palette: dict, conf: dict) -> str:
     """Border accent as a bare 6-hex string (no '#')."""
-    return _resolve_border(theme, palette, conf, "ACCENT", "blue",
+    return _resolve_border(theme_dir, palette, conf, "ACCENT", "blue",
                            "active_border")
 
 
-def resolve_inactive(theme: str, palette: dict, conf: dict) -> str:
+def resolve_inactive(theme_dir: str, palette: dict, conf: dict) -> str:
     """Inactive border colour as a bare 6-hex string (no '#')."""
-    return _resolve_border(theme, palette, conf, "INACTIVE", "overlay1",
+    return _resolve_border(theme_dir, palette, conf, "INACTIVE", "overlay1",
                            "inactive_border")
 
 
-def _resolve_border(theme: str, palette: dict, conf: dict,
+def _resolve_border(theme_dir: str, palette: dict, conf: dict,
                     what: str, default_key: str, field: str) -> str:
     # Explicit literal wins (themes whose value falls outside the palette).
     if conf.get(f"BORDER_{what}_HEX"):
@@ -119,7 +119,7 @@ def _resolve_border(theme: str, palette: dict, conf: dict,
         return palette[key].lstrip("#").lower()
 
     # Fall back to whatever the existing file says, then to the default key.
-    lua = os.path.join(THEMES_DIR, theme, "hyprland-colors.lua")
+    lua = os.path.join(theme_dir, "hyprland-colors.lua")
     if os.path.exists(lua):
         m = re.search(rf'{field}\s*=\s*"rgba\(([0-9a-fA-F]{{6}})', open(lua).read())
         if m:
@@ -137,11 +137,16 @@ def build_context(theme: str) -> dict[str, str]:
         with open(patch) as f:
             palette.update(json.load(f))
 
-    slug = theme
+    return build_context_from(theme, palette, conf, os.path.join(THEMES_DIR, theme))
+
+
+def build_context_from(slug: str, palette: dict, conf: dict, theme_dir: str) -> dict[str, str]:
+    """Template context for any palette, including ones generated outside
+    config/themes/ (wallpaper.py renders generated themes through this)."""
     name = conf.get("THEME_NAME") or slug
     mode = conf.get("THEME_MODE", "dark")
-    accent = resolve_accent(theme, palette, conf)
-    inactive = resolve_inactive(theme, palette, conf)
+    accent = resolve_accent(theme_dir, palette, conf)
+    inactive = resolve_inactive(theme_dir, palette, conf)
 
     # Which upstream the theme was ported from. Drives the kitty header and
     # the hypr border header style (catppuccin writes its display name,
@@ -272,6 +277,17 @@ def generate_theme(theme: str, dest_dir: str | None = None) -> dict[str, str]:
                 f.write(content)
 
     return results
+
+
+def render_outputs(ctx: dict[str, str], dest_dir: str, extra: dict[str, str] | None = None) -> None:
+    """Render every output (plus `extra` {template: filename}) into dest_dir.
+    For themes outside config/themes/: no overrides/ lookup."""
+    os.makedirs(dest_dir, exist_ok=True)
+    for tpl_name, fname in {**OUTPUTS, **(extra or {})}.items():
+        tpl_path = os.path.join(TEMPLATES_DIR, tpl_name)
+        if os.path.exists(tpl_path):
+            with open(os.path.join(dest_dir, fname), "w") as f:
+                f.write(render(open(tpl_path).read(), ctx))
 
 
 def cmd_check(only: list[str] | None) -> int:
