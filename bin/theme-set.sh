@@ -91,6 +91,10 @@ fi
 # symlink repointed above), so open terminals recolour in place.
 pkill -USR1 -x kitty 2>/dev/null || true
 
+# Neovim re-requires theme-colors.lua (the symlink repointed above) on SIGUSR1
+# — see the Signal autocmd in nvim's plugins/colorscheme.lua.
+pkill -USR1 -x nvim 2>/dev/null || true
+
 # Quickshell picks the palette up on its own: it watches
 # ~/.config/theme/current/quickshell-colors.json, and `current` is the symlink
 # repointed above, so no per-app symlink is needed for it. It just needs

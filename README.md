@@ -40,7 +40,7 @@ Every wallpaper is a theme: picking one applies a colour scheme with it.
 
 `config/wallpapers.json` holds each wallpaper's display name and tags, keyed by
 its path under `config/`. `light`/`dark` tags come from the palette's mode
-automatically. The shell's Themes widget (`SUPER+CTRL+SPACE`) browses,
+automatically. The shell's Themes widget (`SUPER+T`) browses,
 searches, tags and applies them; the CLI does the same:
 
 ```bash
@@ -62,7 +62,7 @@ theme-set.sh <theme-name>   # switch theme, set wallpaper, reload the shell and 
 python3 bin/theme-gen.py --check   # verify generated files match the tree
 ```
 
-In the shell, `SUPER+CTRL+SPACE` opens the Themes widget — the wallpaper library above, which drives the same `theme-set.sh`.
+In the shell, `SUPER+T` opens the Themes widget — the wallpaper library above, which drives the same `theme-set.sh`.
 
 `~/.config/theme/current` symlinks to the active theme directory. Adding a new theme means copying an existing `config/themes/<name>/` directory, editing `palette.json`/`theme.conf`, and dropping in wallpaper(s).
 
