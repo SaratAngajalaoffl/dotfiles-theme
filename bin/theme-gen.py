@@ -6,7 +6,7 @@ A theme directory is a 26-key palette plus wallpapers; every per-app file
 palette, quickshell palette) is derived from that palette via a shared template.
 
 Resolution order:
-  1. palette   <- palette.json (or waybar-colors.css while migrating)
+  1. palette   <- palette.json
   2. patch     <- overrides/palette.json, a partial merge on top
   3. render    <- templates/<file>.tpl
   4. verbatim  <- overrides/<file>, used as-is if present
@@ -38,14 +38,14 @@ TEMPLATES_DIR = os.path.join(ROOT, "templates")
 REFERENCE = "catppuccin-mocha"
 
 # template file -> generated filename
+# Only the apps that are still part of the desktop. waybar, rofi, dunst and eww
+# were replaced by Quickshell and their generated files (waybar-colors.css,
+# rofi-colors.rasi, dunstrc, eww-colors.scss) were removed with them — keep
+# this list in sync with what actually consumes a themed file.
 OUTPUTS = {
-    "waybar-colors.css.tpl":   "waybar-colors.css",
-    "rofi-colors.rasi.tpl":    "rofi-colors.rasi",
-    "eww-colors.scss.tpl":     "eww-colors.scss",
     "kitty-theme.conf.tpl":    "kitty-theme.conf",
     "hyprland-colors.lua.tpl": "hyprland-colors.lua",
     "nvim-colors.lua.tpl":     "nvim-colors.lua",
-    "dunstrc.tpl":             "dunstrc",
     "quickshell-colors.json.tpl": "quickshell-colors.json",
 }
 
@@ -56,8 +56,6 @@ PALETTE_KEYS = [
     "text", "subtext1", "subtext0", "overlay2", "overlay1", "overlay0",
     "surface2", "surface1", "surface0", "base", "mantle", "crust",
 ]
-
-_DEFINE_COLOR = re.compile(r"@define-color\s+([\w-]+)\s+#([0-9a-fA-F]{6})")
 
 
 def theme_dirs() -> list[str]:
@@ -83,22 +81,19 @@ def load_conf(theme: str) -> dict[str, str]:
 
 
 def load_palette(theme: str) -> dict[str, str]:
-    """palette.json, else derive from waybar-colors.css (migration path)."""
+    """The theme's 26-colour palette.
+
+    palette.json is the source of truth. It started life as a migration path
+    from waybar-colors.css, which is where the palette used to live — waybar is
+    gone now, so the palette had to move somewhere independent of a dead app
+    before that file could be deleted.
+    """
     pj = os.path.join(THEMES_DIR, theme, "palette.json")
-    if os.path.exists(pj):
-        with open(pj) as f:
-            return json.load(f)
-
-    css = os.path.join(THEMES_DIR, theme, "waybar-colors.css")
-    if not os.path.exists(css):
-        raise FileNotFoundError(f"{theme}: neither palette.json nor waybar-colors.css")
-
-    pal = {}
-    for line in open(css):
-        m = _DEFINE_COLOR.search(line)
-        if m:
-            pal[m.group(1)] = "#" + m.group(2).lower()
-    return pal
+    if not os.path.exists(pj):
+        raise FileNotFoundError(
+            f"{theme}: no palette.json (every theme needs one — see README)")
+    with open(pj) as f:
+        return json.load(f)
 
 
 def resolve_accent(theme: str, palette: dict, conf: dict) -> str:
@@ -195,28 +190,19 @@ def render(template: str, ctx: dict[str, str]) -> str:
 # NVIM_HEADER are often the SAME string for the reference theme, so a single
 # global substitution pass cannot tell them apart and would pick arbitrarily.
 TEMPLATE_META = {
-    "waybar-colors.css.tpl":   [],
-    "eww-colors.scss.tpl":     ["SLUG"],
-    "rofi-colors.rasi.tpl":    ["SLUG"],
     "kitty-theme.conf.tpl":    ["KITTY_NAME", "KITTY_UPSTREAM"],
     "hyprland-colors.lua.tpl": ["HYPR_HEADER", "SLUG", "ACCENT8", "ACCENT",
                                 "INACTIVE8", "INACTIVE"],
     "nvim-colors.lua.tpl":     ["NVIM_HEADER", "SLUG", "MODE"],
-    "dunstrc.tpl":             [],
     "quickshell-colors.json.tpl": ["MODE"],
 }
 
 # Templates whose reference theme differs from the default.
 #
-# dunstrc is the one file that is NOT purely palette-derived in the reference
-# theme: catppuccin-mocha's copy contains literals (#cd0373, #2274d5, #cdd1dc,
-# #383c4a) that appear in no palette, i.e. mocha's dunst has never matched its
-# own theme. Deriving the template from it bakes those literals in as constants
-# and breaks the other 22 themes. gruvbox is a clean, fully palette-derived
-# example, so it is the reference for this template.
-TEMPLATE_REF = {
-    "dunstrc.tpl": "gruvbox",
-}
+# Empty at the moment. It existed for dunstrc, which was the one file not purely
+# palette-derived in the reference theme (catppuccin-mocha's dunst config
+# contained literals like #cd0373 that appear in no palette), and dunst is gone.
+TEMPLATE_REF = {}
 
 
 def make_templates() -> None:

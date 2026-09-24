@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Pick a wallpaper from the active theme's backgrounds/ and cache it for
-# hyprpaper/hyprlock to pick up. If the theme ships 2+ backgrounds, the first
+# Pick a wallpaper from the active theme's backgrounds/, cache it for hyprlock,
+# and put it on screen via awww. If the theme ships 2+ backgrounds, the first
 # (alphabetically) is used during the day (7 AM-7 PM) and the second at night.
 
 set -euo pipefail
@@ -29,3 +29,13 @@ fi
 
 mkdir -p "$CACHE_DIR"
 cp -- "$src" "$CACHE_FILE"
+
+# hyprpaper used to watch $CACHE_FILE and follow along on its own. awww does
+# not watch anything — it needs an explicit `img` call, so a theme switch has to
+# push the image itself or the desktop keeps the previous theme's wallpaper.
+#
+# The daemon is started at login (see hypr autostart); starting it here too
+# would race with that, so bail out quietly if it is not up yet.
+if pgrep -x awww-daemon >/dev/null 2>&1; then
+  awww img "$CACHE_FILE" --transition-type grow --transition-duration 1 --transition-fps 60
+fi

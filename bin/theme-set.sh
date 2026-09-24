@@ -26,12 +26,14 @@ fi
 
 ln -sfn "$THEME_ROOT" "$CURRENT_LINK"
 
-# Per-app themed files
-ln -sfn "$THEME_ROOT/waybar-colors.css"   "$HOME/.config/waybar/colors.css"
+# Per-app themed files.
+#
+# waybar / rofi / dunst / eww are gone (Quickshell replaced them), so their
+# symlinks are no longer created — pointing at a config dir that no longer
+# exists would just leave dangling links behind. Their generator outputs
+# (waybar-colors.css, rofi-colors.rasi, dunstrc, eww-colors.scss) are likewise
+# no longer produced; see theme-gen.py OUTPUTS.
 ln -sfn "$THEME_ROOT/kitty-theme.conf"    "$HOME/.config/kitty/current-theme.conf"
-ln -sfn "$THEME_ROOT/rofi-colors.rasi"    "$HOME/.config/rofi/colors.rasi"
-ln -sfn "$THEME_ROOT/dunstrc"             "$HOME/.config/dunst/dunstrc"
-ln -sfn "$THEME_ROOT/eww-colors.scss"     "$HOME/.config/eww/colors.scss"
 mkdir -p "$HOME/.config/hypr/conf/hyprland"
 ln -sfn "$THEME_ROOT/hyprland-colors.lua" "$HOME/.config/hypr/conf/hyprland/colors.lua"
 mkdir -p "$HOME/.config/nvim/lua/config"
