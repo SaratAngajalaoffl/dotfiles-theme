@@ -1,0 +1,38 @@
+------------------------------------------------------------------------------------------
+-- NEOVIM COLOR PALETTE — Lofi City
+------------------------------------------------------------------------------------------
+
+-- Managed by the theme switcher. Do not edit in place — edit
+-- theme/config/themes/lofi-city/nvim-colors.lua in the theme submodule instead.
+
+return {
+    mode = "dark",
+    palette = {
+        rosewater = "#d5e5f2",
+        flamingo = "#bbafd0",
+        pink = "#c99bbd",
+        mauve = "#8b85b7",
+        red = "#ae6d86",
+        maroon = "#77495f",
+        peach = "#d4aa95",
+        yellow = "#d7c58f",
+        green = "#8eafa4",
+        teal = "#78a6b2",
+        sky = "#78b8d4",
+        sapphire = "#6485b5",
+        blue = "#445f92",
+        lavender = "#b4b3d1",
+        text = "#e5edf4",
+        subtext1 = "#c6d2de",
+        subtext0 = "#a7b3c1",
+        overlay2 = "#8693a2",
+        overlay1 = "#657180",
+        overlay0 = "#4b5563",
+        surface2 = "#303740",
+        surface1 = "#272d34",
+        surface0 = "#20252b",
+        base = "#191d23",
+        mantle = "#12161b",
+        crust = "#0a0d10",
+    },
+}

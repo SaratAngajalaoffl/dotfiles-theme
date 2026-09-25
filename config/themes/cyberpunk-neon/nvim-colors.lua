@@ -1,0 +1,38 @@
+------------------------------------------------------------------------------------------
+-- NEOVIM COLOR PALETTE — Cyberpunk Neon
+------------------------------------------------------------------------------------------
+
+-- Managed by the theme switcher. Do not edit in place — edit
+-- theme/config/themes/cyberpunk-neon/nvim-colors.lua in the theme submodule instead.
+
+return {
+    mode = "dark",
+    palette = {
+        rosewater = "#dffaff",
+        flamingo = "#ff9cce",
+        pink = "#ff4fa3",
+        mauve = "#a66cff",
+        red = "#ff365f",
+        maroon = "#9b1f48",
+        peach = "#ffad7d",
+        yellow = "#f9e05f",
+        green = "#4de2b2",
+        teal = "#35d5e8",
+        sky = "#38bdf8",
+        sapphire = "#3e7bff",
+        blue = "#1846c7",
+        lavender = "#8da7ff",
+        text = "#e9fbff",
+        subtext1 = "#bfd6df",
+        subtext0 = "#9fb4c1",
+        overlay2 = "#7d91a0",
+        overlay1 = "#5d7180",
+        overlay0 = "#435460",
+        surface2 = "#2b3743",
+        surface1 = "#202c36",
+        surface0 = "#19232b",
+        base = "#121a21",
+        mantle = "#0c1318",
+        crust = "#070b0e",
+    },
+}
