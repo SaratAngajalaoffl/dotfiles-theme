@@ -211,5 +211,44 @@
       "romance",
       "sky"
     ]
+  },
+  "wallpapers/after-rain.jpg": {
+    "tags": [
+      "anime",
+      "cityscape",
+      "cyberpunk",
+      "night",
+      "green"
+    ],
+    "name": "After Rain"
+  },
+  "wallpapers/mirror-bloom.jpg": {
+    "tags": [
+      "anime",
+      "cityscape",
+      "neon",
+      "cherry-blossom"
+    ],
+    "name": "Mirror Bloom"
+  },
+  "wallpapers/torii-skyline.jpg": {
+    "tags": [
+      "anime",
+      "torii",
+      "shrine",
+      "cityscape",
+      "bright",
+      "blue"
+    ],
+    "name": "Torii Skyline"
+  },
+  "wallpapers/vertical-neon-city.jpg": {
+    "tags": [
+      "anime",
+      "cityscape",
+      "cyberpunk",
+      "neon"
+    ],
+    "name": "Vertical Neon City"
   }
 }
