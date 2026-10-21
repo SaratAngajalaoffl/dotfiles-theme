@@ -1,0 +1,19 @@
+{
+  "rosewater": "#ba6f85",
+  "flamingo": "#ba6f85",
+  "red": "#ba6f85",
+  "maroon": "#9b8173",
+  "green": "#588a9e",
+  "text": "#faf4ed",
+  "subtext1": "#cec8c6",
+  "subtext0": "#b3aeae",
+  "overlay2": "#9b9698",
+  "overlay1": "#827e83",
+  "overlay0": "#6c686f",
+  "surface2": "#545059",
+  "surface1": "#423f49",
+  "surface0": "#32303c",
+  "base": "#1c1a28",
+  "mantle": "#171521",
+  "crust": "#13121b"
+}

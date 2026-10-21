@@ -20,9 +20,10 @@ live in config/wallpapers.json, keyed by the image's path relative to config/:
   "wallpapers/tokyo-rain.jpg": {"name": "Tokyo Rain", "tags": ["anime", "cityscape"]}
 
 Optional per entry: "theme" (use that curated palette), "mode" ("dark" /
-"light", for generated palettes; detected from the image otherwise). "light"
-and "dark" are also added to every wallpaper's tags automatically, from its
-mode, so they never need tagging by hand.
+"light", for generated palettes; dark otherwise, even for a bright image).
+"light" and "dark" are also added to every wallpaper's tags automatically,
+from its mode (detected from the image when unset), so they never need
+tagging by hand.
 
 Usage:
   wallpaper.py list                      JSON for the shell
@@ -249,7 +250,9 @@ def generated_theme(wid: str, path: str, entry: dict) -> str:
     """The generated theme dir for a wallpaper, (re)built if missing/stale."""
     out = os.path.join(GENERATED, slug(wid))
     stamp = os.path.join(out, ".source")
-    mode = entry.get("mode") or detect_mode(path)
+    # Dark unless the entry asks otherwise, even for a bright image: matugen's
+    # dark scheme still takes its tint from the wallpaper.
+    mode = entry.get("mode") or "dark"
     key = f"{file_hash(path)} {mode}"
     if os.path.exists(stamp) and open(stamp).read() == key:
         return out

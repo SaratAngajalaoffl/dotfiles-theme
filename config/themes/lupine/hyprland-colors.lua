@@ -6,6 +6,6 @@
 -- theme/config/themes/lupine/hyprland-colors.lua in the theme submodule instead.
 
 return {
-    active_border   = "rgba(3264ebcc)",
-    inactive_border = "rgba(757575aa)",
+    active_border   = "rgba(5f86efcc)",
+    inactive_border = "rgba(828282aa)",
 }

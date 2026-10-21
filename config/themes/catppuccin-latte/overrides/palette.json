@@ -1,0 +1,18 @@
+{
+  "mauve": "#a365f2",
+  "red": "#df5371",
+  "maroon": "#e85461",
+  "blue": "#5087f8",
+  "text": "#eff1f5",
+  "subtext1": "#c4c6cb",
+  "subtext0": "#abadb2",
+  "overlay2": "#93959b",
+  "overlay1": "#7c7d84",
+  "overlay0": "#67686f",
+  "surface2": "#4f5058",
+  "surface1": "#3e3f48",
+  "surface0": "#2f3039",
+  "base": "#1a1b24",
+  "mantle": "#15161e",
+  "crust": "#121218"
+}

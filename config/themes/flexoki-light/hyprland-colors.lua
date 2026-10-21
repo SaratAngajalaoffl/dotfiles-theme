@@ -6,6 +6,6 @@
 -- theme/config/themes/flexoki-light/hyprland-colors.lua in the theme submodule instead.
 
 return {
-    active_border   = "rgba(205ea6cc)",
-    inactive_border = "rgba(878580aa)",
+    active_border   = "rgba(5182bacc)",
+    inactive_border = "rgba(7e7c76aa)",
 }
